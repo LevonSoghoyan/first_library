@@ -66,7 +66,6 @@ char* strchr (const char *pSrc, int c)
 }
 int strcmp (const char *pSrc1, const char *pSrc2) 
 {
-	int Id = 0;
 	while (*pSrc1  && *pSrc1 == *pSrc2 ) {
 		pSrc1++;
 		pSrc2++;
@@ -87,7 +86,7 @@ int atoi (const char *pSrc)
 }
 char* strnstr(const char *pBig, const char *pLittle, size_t len) 
 {
-	char *pTemp;
+	char *pTemp = malloc(sizeof(pLittle));
 	while (len <= sizeof(pLittle)) {
 		strlcpy(pTemp, pLittle, sizeof(pLittle));
 		if (strcmp(pTemp, pLittle) == 0) {
