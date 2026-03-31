@@ -86,9 +86,9 @@ int tt_atoi (const char *pSrc)
 }
 char* tt_strnstr(const char *pBig, const char *pLittle, size_t len) 
 {
-	char *pTemp = malloc(sizeof(pLittle));
-	while (len <= sizeof(pLittle)) {
-		tt_strlcpy(pTemp, pLittle, sizeof(pLittle));
+	char *pTemp = malloc(tt_strlen(pLittle) * 4 + 4);
+	while (len <= tt_strlen(pLittle)) {
+		tt_strlcpy(pTemp, pLittle, tt_strlen(pLittle));
 		if (tt_strcmp(pTemp, pLittle) == 0) {
 			return (char *)pBig;
 		}
@@ -109,42 +109,69 @@ void* tt_calloc(size_t count, size_t size)
 }
 char* strdup(const char *pSrc)
 {
-	char *pDest = malloc (sizeof(pSrc));
+	char *pDest = malloc (tt_strlen(pSrc) * 4 + 4);
 	tt_strcpy(pDest, pSrc);
 	return pDest;
 }
 char **tt_split (char const *s, char c)
 {
-	char *pTemp = malloc(tt_strlen(s)*4+4);
-	int i=0;
+	int nextIndx = 0;
+	int strIndx = 0;
+	size_t i=0;
 	int strCount=0;
-	while(i < tt_strlen(s)) {
+	while (i < tt_strlen(s)) {
 		while (s[i] != c) {
-			pTemp[i] = s[i];
 			i++;
 		}
 	i++;
 	strCount++;
 	}
-	char **pDest
+	char **pDest = malloc(strCount * 8);
+	i = 0;
+	while (i < tt_strlen(s)) {
+		if (s[i] != c) {
+			nextIndx = i;
+		}
+		int charCount =0;
+		while (s[i] != c) {
+			i++;
+			charCount++;
+		}
+		i++;
+		if (charCount != 0) {
+			pDest[strIndx] = malloc (charCount*4);
+			tt_strlcpy(pDest[strIndx], s + nextIndx, charCount);
+			strIndx++;
+		}
+	}
+	return pDest;
 }
 void tt_putchar_fd (char c, int fd) 
 {
-
+//	write (fd, data, tt_strlen(data));
 }
 LinkedList *tt_lstnew (void *content)
 {
-
+	LinkedList *pNode = malloc(9);
+	pNode -> content = content;
+	pNode -> next = NULL;
+	return pNode;
 }
-int tt_lstsize (LiknedList *lst)
+int tt_lstsize (LinkedList *lst)
 {
-
+	if (lst -> next == NULL)
+		return 1;
+	return 1 + tt_lstsize(lst++);
 }
 void  tt_lstadd_front(LinkedList **lst, LinkedList *new)
 {
-
+	new -> next = *lst;
+	*lst = new;
 }
 void  tt_lstadd_back(LinkedList **lst, LinkedList *new)
 {
-
+	LinkedList *pTemp = *lst;
+	while (pTemp -> next != NULL)
+		pTemp = pTemp -> next;
+	pTemp -> next = new;
 }

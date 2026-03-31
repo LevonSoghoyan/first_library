@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra 
 TARGET = lib test
 SRC = src/levlibe.c src/main.c
 TEST_SRC = tests/tests.c sec/levlibe.c
@@ -8,10 +8,10 @@ TEST_OBJ = levlib.o test.o
 all: $(TARGET)
 
 lib: $(OBJ)
-	$(CC) $(OBJ) -o lib.o
+	$(CC) $(OBJ) -o lib
 
 test: $(TEST_OBJ)
-	$(CC) $(TEST_OBJ) -o test.o
+	$(CC) $(TEST_OBJ) -o test
 
 main.o: src/main.c
 	$(CC) $(CFLAGS) -c src/main.c
