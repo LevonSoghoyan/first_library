@@ -20,6 +20,6 @@ char* tt_strdup (const char *pSrc);
 char** tt_split (char const *s, char c);
 void tt_putchar_fd (char c, int fd);
 LinkedList *tt_lstnew (void *content);
-int tt_lstsize (LiknedList *lst);
+int tt_lstsize (LinkedList *lst);
 void  tt_lstadd_front(LinkedList **lst, LinkedList *new);
 void  tt_lstadd_back(LinkedList **lst, LinkedList *new);
