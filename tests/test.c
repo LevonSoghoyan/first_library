@@ -6,9 +6,9 @@
 void assert(int condition, char *pTestName) 
 {
     if (condition) {
-        printf("DONE %s\n",pTestName);
+        printf("The %s works correct.\n",pTestName);
     } else {
-        printf("FAIL %s\n",pTestName);
+        printf("The %s works incorrect\n",pTestName);
     }
 }
 
@@ -160,5 +160,11 @@ int main()
     assert(test_split(),"tt_split");   
     assert(test_calloc(),"tt_calloc");   
     assert(test_strdup(),"tt_strdup");   
-	return 0;
+    LinkedList *pList = tt_lstnew("a");
+    LinkedList *pNode1 = tt_lstnew("one");
+    LinkedList *pNode2 = tt_lstnew("two");
+    tt_lstadd_front(&pList, pNode1);
+    tt_lstadd_back(&pList, pNode2);
+    assert(tt_lstsize(pList) == 3,"LinkedList");
+    return 0;
 }
