@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -Iinclude
+CFLAGS = -Wall -Wextra -Iinclude 
 TARGET = lib test
 SRC = src/levlib.c src/main.c
 TEST_SRC = tests/test.c src/levlib.c
