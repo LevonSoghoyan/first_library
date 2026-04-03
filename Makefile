@@ -1,8 +1,8 @@
 CC = gcc
-CFLAGS = -Wall -Wextra 
+CFLAGS = -Wall -Wextra -Iinclude
 TARGET = lib test
-SRC = src/levlibe.c src/main.c
-TEST_SRC = tests/tests.c sec/levlibe.c
+SRC = src/levlib.c src/main.c
+TEST_SRC = tests/test.c src/levlib.c
 OBJ = levlib.o main.o
 TEST_OBJ = levlib.o test.o
 all: $(TARGET)
